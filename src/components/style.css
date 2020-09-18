@@ -1,0 +1,331 @@
+body {
+      background-color: #bdbdbd;
+      background-image: url(./img/mocha-grunge.png);
+      font-family: 'Indie Flower';
+      font-style: normal;
+      font-weight: normal;
+}
+
+header {
+     
+      /* background-image: url(/img/header.jpg); */
+      background-color: black;
+      /* background-position: top; */
+      width: 100%;
+      height: 70px;
+      padding: 0px 12px;
+      top: 0;
+      right: 0;
+      left: 0;
+      filter: drop-shadow(0px 6px 50px rgba(0, 0, 0, 0.3));
+      transition-duration: 0.7s;
+}
+
+header h1 {
+      margin: 0;
+      margin-left: 75px;
+      font-size: 50px;
+      align-items: center;
+      color: white;
+      -webkit-text-stroke: 2px black;
+      -webkit-text-fill-color: white;
+      
+}
+
+footer {
+      margin: -16px;
+      margin-top: 20px;
+      padding: 0px 12px;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2.5rem;
+      background-image: url(./img/header.jpg);
+}
+
+
+
+.container {
+      width: 60%;
+      margin: 50px auto;
+
+}
+
+.title .line {
+      margin: 0px;
+      margin-top: -10px;
+      background-image: url(./img/chto-takoe-graffiti.jpg);
+      height: 15px;
+}
+
+.title h2 {
+      margin-left: 10px;
+      margin-bottom: 0px;
+      font-size: 35px;
+}
+
+.AboutMe p {
+      display: inline-block;
+      width: 60%;
+      font-size: 35px;
+      margin: 10px;
+      vertical-align:  top;
+      font-family: 'Indie Flower';
+      color: black;
+      text-align: left;
+}
+
+.AboutMeImg {
+      display: inline-block;
+      background-image: url(./img/photo_2019-08-30_21-46-21.jpg);
+      background-size: cover;
+      width: 35%;
+      height: 400px;
+      margin: 10px;
+      background-position: center;
+      filter: drop-shadow(0px 6px 50px rgba(0, 0, 0, 0.3));
+     
+      
+}
+
+
+    .containerGallery {
+      margin: -16px;
+      padding: 0px 12px;
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-color: black;
+      
+    }
+
+.card {
+      position: relative;
+      width: 340px;
+      height: 200px;
+      margin: 10px;
+      padding: 18px auto;
+      display: inline-block;
+      border-radius: 15px;
+      background-color: black;
+      
+}
+
+.card h3, p {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 35px;
+      align-items: center;
+      text-align: center;
+      color: white;
+      margin: 0;
+      margin-top: 10px;
+      letter-spacing: 5px;
+}
+
+.card p {
+      font-size: 20px;
+      margin: 0;
+      letter-spacing: 0px;
+}
+
+.cardName {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      height: 50%;
+      margin: 0 auto;
+      background-color: white;
+      left: 0;
+      right: 0;
+      padding: auto;
+}
+
+.cardName p {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      vertical-align: middle;
+      font-family: 'Indie Flower';
+      font-style: normal;
+      font-weight: normal;
+      color: black !important;
+      font-size: 50px;
+}
+
+.bigCard  .card {
+      width: 40%;
+      height: 250px;
+}
+
+.bigCard .card h3{
+      font-size: 45px;
+      margin-top: 15px;
+      letter-spacing: 7px;
+}
+
+.bigCard  .card p{
+      font-size: 25px;
+}
+
+.bigCard  .card  .cardName p{
+      font-size: 60px;
+} 
+
+.center {
+      text-align: center;
+}
+
+.Tag {
+      position: relative;
+      width: 40%;
+      height: 250px;
+      margin: 10px;
+      padding: 18px auto;
+      display: inline-block;
+      border-radius: 15px;
+      background-color: black;
+      vertical-align: top;
+      
+}
+
+.Tag h3 {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 45px;
+      align-items: center;
+      text-align: center;
+      margin-top: 15px;
+      color: white;
+      letter-spacing: 5px;
+}
+
+
+.TagImg {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      height: 60%;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      padding: auto;
+      background-size: cover;
+      background-position: center;
+      
+}
+
+.painterWorks {
+      width: 80%;
+      margin: 10px 0;
+      box-shadow: 10px 10px 50px 26px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+}
+
+.bg {  overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 101vh;
+      background-size: cover;
+      background-position: center;
+      will-change: opacity;
+    }
+
+.AddForm {
+      overflow: hidden;
+      margin-top: -20px;
+      padding: 0 30px;
+      padding-bottom: 50px;
+}
+
+.AddForm input {
+      display: block;
+      margin: 5px 0;
+}
+
+.AddForm label {
+      display: block;
+      font-size: 40px;
+      margin: 5px 10px;
+}
+
+.AddForm .InputText {
+      width: 40%;
+      height: 40px;
+      font-size: 25px;
+}
+
+.InputFile {
+      background-color: black;
+      display: none;
+      width: 0.1px !important;
+	height: 0.1px !important;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -100;
+}
+
+.styleBth {
+      margin-top: 15px;
+      display: block;
+      width: 20%;
+      border: none;
+      background: #404040;
+      color: #ffffff !important;
+      font-size: 20px;
+      font-weight: 100;
+      padding: 20px;
+      text-transform: uppercase;
+      border-radius: 6px;
+      display: inline-block;
+      transition: all 0.3s ease 0s;
+}
+
+.styleBth:hover {
+      color: #404040 !important;
+      font-weight: 700 !important;
+      letter-spacing: 3px;
+      background: none;
+      -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+      -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+      transition: all 0.3s ease 0s;
+}
+
+.preview {
+      border: 4px dashed black;
+}
+
+.DeleteBth {
+      color: white;
+      background-color: black;
+      font-size: 20;
+      border-radius: 3px;
+      border: 3px black;
+      height: 20px;
+      width: 40px;
+}
+
+.DeleteItem {
+      position: absolute;
+      overflow: hidden;
+      display: inline-block;
+      margin: 15px;
+      margin-top: 30px;
+}
+
+
+.WorkBlock {
+      overflow: inherit;
+}
