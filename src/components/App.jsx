@@ -14,6 +14,8 @@ import Painters from "./Painters";
 import AboutPainter from "./AboutPainter";
 import "./style.css"
 import AddForm from "./AddForm";
+import PreLogin from "./PreLogin";
+import RegisterPage from "./Register"
 
 export default function App() {
   return (
@@ -31,6 +33,12 @@ export default function App() {
           </Route>
           <Route path="/addmenu">
             <AddMenu />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
           <Route path="/">
             <Home />
@@ -73,8 +81,22 @@ function AddMenu() {
   return (<div>
    <Header animation="false"/>
    <AddForm />
-    <Footer />
+
     </div>)
+}
+
+function Login() {
+    return (<div>
+    <Header animation="false"/>
+      <PreLogin/>
+      
+    </div>)
+}
+
+function Register() {
+  return (<div>
+    <RegisterPage />
+  </div>)
 }
 
 

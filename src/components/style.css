@@ -19,17 +19,56 @@ header {
       left: 0;
       filter: drop-shadow(0px 6px 50px rgba(0, 0, 0, 0.3));
       transition-duration: 0.7s;
+      overflow: hidden;
+      
 }
 
 header h1 {
-      margin: 0;
-      margin-left: 75px;
+      display: inline-block;
+      margin: auto;
+      margin-left: 50px;
       font-size: 50px;
       align-items: center;
       color: white;
       -webkit-text-stroke: 2px black;
       -webkit-text-fill-color: white;
       
+}
+
+header  p {
+      display: inline-block;
+      letter-spacing: 0px;
+      color: grey;
+      font-size: 30px;
+      margin: auto;
+      margin-left: 10px;
+}
+
+/* .divForBth {
+      display: inline-block ;
+      vertical-align: middle;
+      margin: auto;
+} */
+
+header button {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 40px;
+      vertical-align: middle;
+      margin: auto;
+      width: 90px;
+      height: 50px;
+      border-radius: 4px;
+      background-color: grey;
+      font-size: 20px;
+      color: black;
+      font-family: Roboto;
+      border-color: black;
+      border: 2px;
+      
+
 }
 
 footer {
@@ -58,13 +97,13 @@ footer {
       height: 15px;
 }
 
-.title h2 {
+.title  h2 {
       margin-left: 10px;
       margin-bottom: 0px;
       font-size: 35px;
 }
 
-.AboutMe p {
+.AboutMe  p {
       display: inline-block;
       width: 60%;
       font-size: 35px;
@@ -112,7 +151,7 @@ footer {
       
 }
 
-.card h3, p {
+.card  h3, p {
       font-family: Roboto;
       font-style: normal;
       font-weight: normal;
@@ -125,7 +164,7 @@ footer {
       letter-spacing: 5px;
 }
 
-.card p {
+.card  p {
       font-size: 20px;
       margin: 0;
       letter-spacing: 0px;
@@ -143,7 +182,7 @@ footer {
       padding: auto;
 }
 
-.cardName p {
+.cardName  p {
       position: absolute;
       left: 0;
       right: 0;
@@ -166,13 +205,13 @@ footer {
       height: 250px;
 }
 
-.bigCard .card h3{
+.bigCard  .card h3{
       font-size: 45px;
       margin-top: 15px;
       letter-spacing: 7px;
 }
 
-.bigCard  .card p{
+.bigCard   .card > p{
       font-size: 25px;
 }
 
@@ -282,13 +321,13 @@ footer {
       display: block;
       width: 20%;
       border: none;
-      background: #404040;
+      background: black;
       color: #ffffff !important;
       font-size: 20px;
       font-weight: 100;
       padding: 20px;
       text-transform: uppercase;
-      border-radius: 6px;
+      border-radius: 30px;
       display: inline-block;
       transition: all 0.3s ease 0s;
 }
@@ -328,4 +367,42 @@ footer {
 
 .WorkBlock {
       overflow: inherit;
+}
+
+.Login {
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 100px;
+      vertical-align: auto;
+      width: 30%;
+      
+}
+
+.Login  button, label, input {
+      display: block;
+      margin: 15px auto;
+}
+.Login  input {
+      width: 50%;
+      height: 40px;
+      border-radius: 40px;
+      font-size: 25px;
+      padding:0 10px ;
+
+}
+.Login  label {
+      font-size: 40px;
+      margin-bottom: -10px;
+}
+
+.Login  button {
+      margin: 40px auto;
+      width: 50%;
+}
+
+.Login      p {
+      letter-spacing: 0;
+      color: black;
+      font-size: 20px;
+      margin: -30px auto;
 }

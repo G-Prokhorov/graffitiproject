@@ -5,29 +5,52 @@ const mongoose = require('mongoose');
 const multer = require('multer')
 const cors = require("cors")
 const app = express();
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken");
+const cookieParser = require('cookie-parser');
 
 
+require('dotenv').config()
+
+
+
+const secret = process.env.SECRET;
+const fileSize = 500000000000000000000000000000000000000000; 
 
 app.use(express.static(path.join(__dirname, "build")));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
-app.use(cors({
-      origin: 'http://localhost:3000'
-}));
+app.use(cors());
+app.use(cookieParser());
 
 
 
-mongoose.connect("mongodb://localhost:27018/Painters", {useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb://localhost:27018/Painters", {useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true,  useCreateIndex: true})
 
-const PaintersSchema = new mongoose.Schema ({
-      nick: String,
-      tag: {key: String,
-            link: String}, 
-      works: [{key: String,
-      link: String}]
-});
+      const PaintersSchema = new mongoose.Schema ({
+            nick: String,
+            tag: {key: String,
+                  link: String}, 
+            works: [{key: String,
+            link: String}]
+      });
+
+
+
+
+      const saltRounds = 10;
+      const UserSchema = new mongoose.Schema({
+            email:String,
+            password:String
+      });
+    
+      
+      
+      const User = mongoose.model("Users", UserSchema)
 
 const DataPainters = mongoose.model("Painters", PaintersSchema);
+
 
 
 app.get("/ping", (req, res)=>{
@@ -38,11 +61,6 @@ app.get("/", (req, res)=>{
       res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.get("/test", (req, res)=>{
-      res.json({
-            text: "Hello"
-      });
-});
 
 
 
@@ -60,7 +78,7 @@ app.get("/api/db", async (req, res) => {
 });
 
 app.get("/api/painter/:id", async (req, res) => {
-console.log(req.params.id);
+
       try {
             let item = await DataPainters.findOne({nick: req.params.id});
             res.json(item);
@@ -75,19 +93,19 @@ console.log(req.params.id);
 
 let storage = multer.memoryStorage();
 
-var upload = multer({ storage: storage,  limits: { fileSize: 500000000000000000000000000000000000000000 } } );
+var upload = multer({ storage: storage,  limits: { fileSize: fileSize} } );
 app.post('/upload', upload.any(), async (req, res) => {
       let nick = req.body.nick;
       nick = nick.toUpperCase()
       
       const data = {
-            tag: null,
+            tag: "",
             works: []
       }
       console.log("start")
       await Promise.all(req.files.map(async (file) => {
            
-            if (file === null) {
+            if (!file) {
                   res.json("You may be not upload some file")
             } else if (file.fieldname === "tag") {
                   let filename = Date.now() + '-' +file.originalname;
@@ -104,9 +122,11 @@ app.post('/upload', upload.any(), async (req, res) => {
 
       try { 
             let item = await DataPainters.findOne({nick: nick});
-            if (item !== null && data.tag === null) {
+            if (!item && data.tag === null) {
+                  if (item.tag !== null)  {
                   data.tag=item.tag
-            } else if (item !== null && data.tag !== null) {
+                  }
+            } else if (!item && !data.tag) {
                 if (item.tag !== null)  {
                       deleteFile(item.tag.key)
                   }
@@ -153,7 +173,7 @@ app.post('/upload', upload.any(), async (req, res) => {
             try {
                   let item = await DataPainters.findOne({nick: nick});
                   console.log(item.tag.key);
-                  if (item.tag.key !== null) {
+                  if (!item.tag.key) {
                         await deleteFile(item.tag.key);
                   }
                   item.works.map( async (item) => {
@@ -177,6 +197,7 @@ app.post('/upload', upload.any(), async (req, res) => {
 
 //////////////////////////Cloud servise//////////////////////////////////////////////////
 var AWS = require('aws-sdk');
+const { resolveSoa } = require('dns');
 
 var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
 AWS.config.credentials = credentials;
@@ -227,9 +248,66 @@ function deleteFile(key) {
 
 //////////////////////////Cloud servise//////////////////////////////////////////////////
 
-///////////////////////////////test///////////////////////////////////////////////
+///////////////////////////////Login & Register///////////////////////////////////////////////
 
-///////////////////////////////test///////////////////////////////////////////////
+app.post('/api/register', async (req, res) => {
+      console.log(req.body)
+      const {email, password} = req.body.data;
+      try {
+           let salt = await bcrypt.genSalt(saltRounds);
+           let hash = await bcrypt.hash(password, salt);
+           await User.findOneAndUpdate({email: email}, 
+            {$setOnInsert: 
+                  { email: email,
+                  password: hash } 
+            },
+            { upsert: true });
+            res.sendStatus(200)
+      } catch (err) {
+            res.sendStatus(500)
+            console.log("Error while register new user, " + err)
+      }
+     
+      });
+
+app.post("/api/login", async (req, res) => {
+      console.log(req.body)
+      let body = req.body.data;
+      const {email, password} = body;
+      try {
+            let item = await User.findOne({email: email});
+            let result = await bcrypt.compare(password, item.password);
+            if (result === false) {
+                  res.sendStatus(401).send("Incorect passwor or email");
+            } else if (result === true) { 
+                  let token = await jwt.sign({email: email}, secret, {
+                        expiresIn: '1h'
+                      });
+                  res.json({token: token});   
+            }
+      } catch (err) {
+            console.log("Error while login new user, " + err)
+            res.sendStatus(500)
+      }
+});
+
+app.post('/api/checkToken', function(req, res) {
+      const token = req.body.token;
+      if (!token) {
+            res.status(401).send('Unauthorized: No token provided');
+          } else {
+            jwt.verify(token, secret, function(err, decoded) {
+              if (err) {
+                res.status(401).send('Unauthorized: Invalid token');
+              } else {
+                res.status(200).send("All ok")
+              }
+            });
+          }
+        }
+    )
+///////////////////////////////Login & Register///////////////////////////////////////////////
+
 
 
 

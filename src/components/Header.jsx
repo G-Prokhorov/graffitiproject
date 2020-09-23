@@ -1,8 +1,11 @@
-import React, {useState, useCallback, useEffect} from "react";
+import React, {useState, useEffect} from "react";
+import {Link} from "react-router-dom";
+import AuthSetvice from "./AuthSetvice";
 
 
 
-function Header(props) {const [ScrollPosition, setPosition] = useState(true);
+function Header(props) {
+      const [ScrollPosition, setPosition] = useState(true);
       const handleScroll = () => {
             const position = window.pageYOffset;
             if (position === 0) {
@@ -12,6 +15,17 @@ function Header(props) {const [ScrollPosition, setPosition] = useState(true);
             }
             
         };
+
+        let [Token, setToken] = useState(false)
+      async function Start() {
+            let res = await AuthSetvice.CheckToken();
+            if (res === 200) {
+                  setToken(true)
+            }
+      }
+
+      Start();
+
         
         useEffect(() => {
             window.addEventListener('scroll', handleScroll, { passive: true });
@@ -34,18 +48,29 @@ function Header(props) {const [ScrollPosition, setPosition] = useState(true);
             style = {
                   display: "block",
                   position: "reletive",
-                  margin: "-16px",
+                  paddign: "0",
+                  margin:"-8px -16px",
                   marginBottom: "20px"
             }
       }
 
 
-      
+      function logout() {
+            AuthSetvice.logout();
+            window.location.replace("/home")
+      }
       
 
       return (<header className="header" style={style}>
-            <h1>{props.name}</h1>
-         
+            <h1>Graffiti Kharkiv</h1>
+            <Link to="/home"><p>Home</p></Link>
+            <div className="divForBth">
+            {Token ? 
+                  <button onClick={logout}>Log out</button>
+           :  <Link to="/login">
+                  <button>Log in</button>
+            </Link>  }
+            </div>
       </header>);
 }
 
