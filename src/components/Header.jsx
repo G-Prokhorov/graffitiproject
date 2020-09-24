@@ -4,6 +4,7 @@ import AuthSetvice from "./AuthSetvice";
 
 
 
+
 function Header(props) {
       const [ScrollPosition, setPosition] = useState(true);
       const handleScroll = () => {
@@ -16,18 +17,18 @@ function Header(props) {
             
         };
 
-        let [Token, setToken] = useState(false)
-      async function Start() {
-            let res = await AuthSetvice.CheckToken();
-            if (res === 200) {
-                  setToken(true)
+      let [Token, setToken] = useState(false)
+  
+      useEffect(() => {
+            let token = JSON.parse(localStorage.getItem('user'));
+            if (token) {
+                  setToken(true);
+            } else {
+                  setToken(false)
             }
-      }
-
-      Start();
-
-        
-        useEffect(() => {
+      });
+      
+      useEffect(() => {
             window.addEventListener('scroll', handleScroll, { passive: true });
         
             return () => {

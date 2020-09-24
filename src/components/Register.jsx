@@ -1,15 +1,67 @@
 import React,  { useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
-import AuthService from "./AuthSetvice"
+import AuthService from "./AuthSetvice";
+import Form from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
+import CheckButton from "react-validation/build/button";
+
+
+import { isEmail } from "validator";
+
 
 function Register() {
-      let [data, setData] = useState({
+      const [data, setData] = useState({
             email: "",
             password: "",
             confirmPassword: ""
+      });
+
+      const [state, setState] = useState({
+            successful: false,
+            message: ""
       })
 
+      function required (value){
+            if (!value) {
+              return (
+                <div className="alert alert-danger" role="alert">
+                  This field is required!
+                </div>
+              );
+            }
+          };
+          
+      function email (value) {
+            if (!isEmail(value)) {
+              return (
+                <div className="alert alert-danger" role="alert">
+                  This is not a valid email.
+                </div>
+              );
+            }
+            };
+
+      function vpassword (value) {
+                  if (value.length < 6 || value.length > 40) {
+                    return (
+                      <div className="alert alert-danger" role="alert">
+                        The password must be between 6 and 40 characters.
+                      </div>
+                    );
+                  }
+                };   
+      // function differentpassword (value) {
+      //             if (value !== data.password) {
+      //                   return (
+      //                         <div className="alert alert-danger" role="alert">
+      //                               Check your password, they are different.
+      //                         </div>
+      //                   );
+      //             }
+      //       };      
+
+     
       function handlleChangeInput(event) {
             let {id, value} = event.target;
             setData((prev) => {
@@ -20,37 +72,68 @@ function Register() {
             })
       }
 
-      async function onSubmit() {
-            if (data.password !== data.confirmPassword) {
-                  alert("Check your password, they are different")
-            } else if  (data.password === data.confirmPassword) {
+      async function onSubmit(e) {
+
+            e.preventDefault();
+
+            setState({
+                  message: "",
+                  successful: false
+            });
+
+            
                   let NewData = {
                         email: data.email,
                         password: data.password
                   }
-                  let res = await AuthService.register(NewData);
-                  if (res === 200) {
-                        alert("User succesfully register");
-                        window.location.replace("/login");
-                  } else {
-                        alert("User don`t register, try again");
-                        window.location.replace("/register");
-                  }
+                  try {
+                        let res = await AuthService.register(NewData);
+                         if (res === 200) {
+                              setState({
+                                    message: "User succesfully register",
+                                    successful: true })
+                         } else {
+                        setState({
+                              message: "User don`t register, try again",
+                              successful: true })
+                        }
+                  } catch (err) {
+                        setState({
+                              message: err,
+                              successful: true })
+                        }
+                  
             }
-      }
+
 
       return (<div>
             <Header animation="false"/>
-            <div className="Login">
+            <Form className="Login" onSubmit={onSubmit}>
                   <label type="email" for="email">Email</label>
-                  <input onChange={handlleChangeInput} id="email" autocomplete="off" />
+                  <Input onChange={handlleChangeInput} id="email" autocomplete="off" validations={[required, email]}/>
                   <label  for="password">Password</label>
-                  <input onChange={handlleChangeInput}  type="password" id="password" autocomplete="off"  />
-                  <label   for="password">Confirm your password</label>
-                  <input onChange={handlleChangeInput} id="confirmPassword"  type="password" autocomplete="off" />
-                  <button onClick={onSubmit} className="styleBth">Register</button>
+                  <Input onChange={handlleChangeInput}  type="password" id="password" autocomplete="off"   validations={[required, vpassword]}/>
+                  {/* <label   for="password">Confirm your password</label>
+                  <Input onChange={handlleChangeInput} id="confirmPassword"  type="password" autocomplete="off" validations={[required, differentpassword]} /> */}
+                  <button className="styleBth" type="submit">Register</button>
 
-            </div>
+                  {state.message && (
+              <div className="form-group">
+                <div
+                  className={
+                    state.successful
+                      ? "alert alert-success"
+                      : "alert alert-danger"
+                  }
+                  role="alert"
+                >
+                  {state.message}
+                </div>
+              </div>
+            )}
+            
+
+            </Form>
             <Footer style={{position: "fixed",
             left: "0",
             bottom: "0",

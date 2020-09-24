@@ -312,6 +312,6 @@ app.post('/api/checkToken', function(req, res) {
 
 
 
-app.listen(process.env.PORT || 8080, ()=>{
+app.listen(8080, ()=>{
       console.log("Server started on port 8080")
 });

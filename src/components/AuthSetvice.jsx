@@ -5,6 +5,7 @@ const API_URL = "http://localhost:8080/api/";
 class AuthService {
   async login(data) {
    try { 
+        console.log(data)
         let response = await axios.post(API_URL + "login", {data})
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
