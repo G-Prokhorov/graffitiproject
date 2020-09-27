@@ -1,13 +1,10 @@
-import React,  { useState } from "react";
+import React,  { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import AuthService from "./AuthSetvice";
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
-import CheckButton from "react-validation/build/button";
-
 
 import { isEmail } from "validator";
+import ErrValidator from "./Errvalidator";
 
 
 function Register() {
@@ -18,49 +15,108 @@ function Register() {
       });
 
       const [state, setState] = useState({
+            emailErr: {
+                  valid: false,
+                  visibility: false
+            },
+            FPasswordErr:{
+                  valid: false,
+                  visibility: false
+            },
+            SPasswordErr:{
+                  valid: false,
+                  visibility: false
+            },
+            disabled: true,
             successful: false,
             message: ""
-      })
+      });
 
-      function required (value){
-            if (!value) {
-              return (
-                <div className="alert alert-danger" role="alert">
-                  This field is required!
-                </div>
-              );
-            }
-          };
           
-      function email (value) {
-            if (!isEmail(value)) {
-              return (
-                <div className="alert alert-danger" role="alert">
-                  This is not a valid email.
-                </div>
-              );
+      function email (event) {
+            if (!isEmail(event.target.value)) {
+                  setState((prev) => {
+                        return {
+                              ...prev,
+                              emailErr: {
+                                    valid: false,
+                                    visibility: true
+                              }
+                        }
+              })
+            } else {
+                  setState((prev) => {
+                        return {
+                              ...prev,
+                              emailErr: {
+                                    valid: true,
+                                    visibility: false
+                              }
+                        }
+              })
+                  
             }
-            };
+      }
 
-      function vpassword (value) {
+
+      function vpassword (event) {
+            let value = event.target.value;
                   if (value.length < 6 || value.length > 40) {
-                    return (
-                      <div className="alert alert-danger" role="alert">
-                        The password must be between 6 and 40 characters.
-                      </div>
-                    );
+                        setState((prev) => {
+                              return {
+                                    ...prev,
+                                    FPasswordErr: {
+                                          valid: false,
+                                          visibility: true
+                                    }
+                              }
+                    })
+                  } else {
+                        setState((prev) => {
+                              return {
+                                    ...prev,
+                                    FPasswordErr: {
+                                          valid: true,
+                                          visibility: false
+                                    }
+                              }
+                    })
+                        
                   }
-                };   
-      // function differentpassword (value) {
-      //             if (value !== data.password) {
-      //                   return (
-      //                         <div className="alert alert-danger" role="alert">
-      //                               Check your password, they are different.
-      //                         </div>
-      //                   );
-      //             }
-      //       };      
 
+                  different(data.confirmPassword, value)
+                  
+                };   
+
+      function differentpassword (event) {
+                  different(event.target.value, data.password)
+                  
+            };            
+
+      function different(value, data) {
+            if (value !== data) {
+                  setState((prev) => {
+                        return {
+                              ...prev,
+                              SPasswordErr: {
+                                    valid: false,
+                                    visibility: true
+                              }
+                        }
+              })
+            } else {
+                  setState((prev) => {
+                        return {
+                              ...prev,
+                              SPasswordErr: {
+                                    valid: true,
+                                    visibility: false
+                              }
+                        }
+              })
+                  
+            }
+      }
      
       function handlleChangeInput(event) {
             let {id, value} = event.target;
@@ -75,11 +131,12 @@ function Register() {
       async function onSubmit(e) {
 
             e.preventDefault();
-
-            setState({
+            
+            setState((prev) => {
+                  return {...prev,
                   message: "",
                   successful: false
-            });
+            }});
 
             
                   let NewData = {
@@ -89,36 +146,47 @@ function Register() {
                   try {
                         let res = await AuthService.register(NewData);
                          if (res === 200) {
-                              setState({
+                              setState((prev) => {
+                                    return {...prev,
+                                    disabled:true,
                                     message: "User succesfully register",
-                                    successful: true })
+                                    successful: true }})
                          } else {
-                        setState({
+                        setState((prev) => {
+                              return {...prev,
+                              disabled:true,
                               message: "User don`t register, try again",
-                              successful: true })
+                              successful: false }})
                         }
                   } catch (err) {
-                        setState({
+                        setState((prev) => {
+                              return {...prev,
+                              disabled:true,
                               message: err,
-                              successful: true })
+                              successful: true }
+                        })
                         }
                   
             }
 
+          
+
+    
 
       return (<div>
             <Header animation="false"/>
-            <Form className="Login" onSubmit={onSubmit}>
+            <form className="Login" onSubmit={onSubmit}>
                   <label type="email" for="email">Email</label>
-                  <Input onChange={handlleChangeInput} id="email" autocomplete="off" validations={[required, email]}/>
+                  <input onChange={(event) => {handlleChangeInput(event); email(event)}} id="email" autocomplete="off" />
+                  <ErrValidator visibility={state.emailErr.visibility} err="This is not a valid email." />
                   <label  for="password">Password</label>
-                  <Input onChange={handlleChangeInput}  type="password" id="password" autocomplete="off"   validations={[required, vpassword]}/>
-                  {/* <label   for="password">Confirm your password</label>
-                  <Input onChange={handlleChangeInput} id="confirmPassword"  type="password" autocomplete="off" validations={[required, differentpassword]} /> */}
-                  <button className="styleBth" type="submit">Register</button>
-
+                  <input onChange={(event) => {handlleChangeInput(event); vpassword(event)}}  type="password" id="password" autocomplete="off" />
+                  <ErrValidator visibility={state.FPasswordErr.visibility} err="The password must be between 6 and 40 characters." />
+                  <label   for="password">Confirm your password</label>
+                  <input onChange={(event) => {handlleChangeInput(event); differentpassword(event)}} id="confirmPassword"  type="password" autocomplete="off" />
+                  <ErrValidator visibility={state.SPasswordErr.visibility} err="Check your password, they are different."/>
+                  <button className={(state.emailErr.valid && state.FPasswordErr.valid && state.SPasswordErr.valid) ? 'styleBth' : 'btnDisabled'} type="submit" disabled={(state.emailErr.valid && state.FPasswordErr.valid && state.SPasswordErr.valid) ? false : true}>Register</button>
                   {state.message && (
-              <div className="form-group">
                 <div
                   className={
                     state.successful
@@ -129,11 +197,10 @@ function Register() {
                 >
                   {state.message}
                 </div>
-              </div>
             )}
             
 
-            </Form>
+            </form>
             <Footer style={{position: "fixed",
             left: "0",
             bottom: "0",

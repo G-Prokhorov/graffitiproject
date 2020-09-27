@@ -7,7 +7,12 @@ function LoginPage() {
       let [data, setData] = useState({
             email: "",
             password: ""
-      })
+      });
+
+      const [state, setState] = useState({
+            successful: false,
+            message: ""
+      });
 
       function handlleChangeInput(event) {
             let {id, value} = event.target;
@@ -20,15 +25,27 @@ function LoginPage() {
       }
       
       async function onSubmit() {
+            setState((prev) => {
+                  return {...prev,
+                  message: "",
+                  successful: false
+            }});
+
             try {
                   let res = await AuthService.login(data);
                   if (res) {
                         window.location.replace("/addmenu");
                   } else {
-                        alert("Incorect login or password, try login again")
+                        setState((prev) => {
+                              return {...prev,
+                              message: "Incorect login or password, try login again",
+                              successful: false }})
                   }
             } catch (err) {
-                  alert("Incorect login or password, try login again")
+                  setState((prev) => {
+                        return {...prev,
+                        message: "Incorect login or password, try login again",
+                        successful: false }})
             }
       }
 
@@ -44,6 +61,17 @@ function LoginPage() {
                   <button onClick={onSubmit} className="styleBth" >Log in</button>
                   <p>OR</p>
                   <button onClick={Redirect} className="styleBth">Register</button>
+                  {state.message && (
+                <div
+                  className="alert alert-danger"
+                  role="alert"
+                >
+                  {state.message}
+                </div>
+            )}
+            
+            </div>
+
                   <Footer style={{
                         position: "fixed",
                         left: "0",
@@ -52,7 +80,7 @@ function LoginPage() {
                         margin: "0",
                         marginTop: "20px"
             }} />  
-            </div>
+            
       </div>)
 }
 

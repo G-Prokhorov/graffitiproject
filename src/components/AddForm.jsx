@@ -60,20 +60,16 @@ function AddForm() {
       function  onClickHandler() {
             const data = new FormData();
             Array.prototype.forEach.call(state.selectedFile, (element)=>{
-                  console.log(element)
                   data.append("file", element);
             });
             data.append('nick', state.nick);
             data.append('tag', state.tag);
-            console.log(data)
-            Axios.post("http://localhost:8080/upload", data,  { 
-            
-            }).then(res => { // then print response status
+            data.append("token", JSON.parse(localStorage.getItem('user')))
+            Axios.post("http://localhost:8080/upload", data
+            ).then(res => { // then print response status
                   console.log(res.status)
                })
             }
-
-            
 
             if (!Token) {
                   return <LoginPage />

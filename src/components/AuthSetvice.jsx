@@ -8,7 +8,7 @@ class AuthService {
         console.log(data)
         let response = await axios.post(API_URL + "login", {data})
         if (response.data.token) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem("user", JSON.stringify(response.data.token));
           console.log(response.data.token)
           return true
         }
@@ -35,7 +35,7 @@ class AuthService {
 
   async CheckToken() {
      let token = JSON.parse(localStorage.getItem('user'));
-    try {let res = await axios.post(API_URL + "checkToken", token);
+    try {let res = await axios.post(API_URL + "checkToken", {token: token});
       return (res.status)
     } catch(err) {
       return 500

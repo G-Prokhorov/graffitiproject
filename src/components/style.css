@@ -330,6 +330,7 @@ footer {
       border-radius: 30px;
       display: inline-block;
       transition: all 0.3s ease 0s;
+      cursor: pointer;
 }
 
 .styleBth:hover {
@@ -340,7 +341,24 @@ footer {
       -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
       -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
       transition: all 0.3s ease 0s;
+      cursor: pointer;
 }
+
+.btnDisabled {
+      margin-top: 15px;
+      display: block;
+      width: 20%;
+      border: none;
+      background: #f8d7da;
+      color: #721c24 !important;
+      font-size: 20px;
+      font-weight: 100;
+      padding: 20px;
+      text-transform: uppercase;
+      border-radius: 30px;
+      display: inline-block;   
+}
+
 
 .preview {
       border: 4px dashed black;
@@ -389,8 +407,13 @@ footer {
       border-radius: 40px;
       font-size: 25px;
       padding:0 10px ;
-
 }
+
+.Login input :focus {
+      border-radius: 40px;
+      border-color: royalblue;
+}
+
 .Login  label {
       font-size: 40px;
       margin-bottom: -10px;
@@ -412,7 +435,7 @@ footer {
       width: 45%;
       position: relative;
       margin: 0 auto;
-      padding: 0.75rem 1.25rem;
+      padding: 0.5rem 1.25rem;
       margin-bottom: 1rem;
       border: 1px solid transparent;
       border-radius: 40px;

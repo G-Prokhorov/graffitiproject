@@ -51,7 +51,9 @@ mongoose.connect("mongodb://localhost:27018/Painters", {useFindAndModify: false,
 
 const DataPainters = mongoose.model("Painters", PaintersSchema);
 
-
+app.post("/test", withAuth, (req, res) => {
+      res.send("lmao");
+})
 
 app.get("/ping", (req, res)=>{
       return res.send("pong");
@@ -94,7 +96,9 @@ app.get("/api/painter/:id", async (req, res) => {
 let storage = multer.memoryStorage();
 
 var upload = multer({ storage: storage,  limits: { fileSize: fileSize} } );
-app.post('/upload', upload.any(), async (req, res) => {
+
+
+app.post('/upload', upload.any(), withAuth, async (req, res) => {
       let nick = req.body.nick;
       nick = nick.toUpperCase()
       
@@ -153,7 +157,7 @@ app.post('/upload', upload.any(), async (req, res) => {
       
       
 
-      app.post("/deleteWork/:nick", async (req, res) => {
+      app.post("/deleteWork/:nick", withAuth, async (req, res) => {
             let key = req.body.key;
             let nick = req.params.nick;
 
@@ -168,7 +172,7 @@ app.post('/upload', upload.any(), async (req, res) => {
             res.redirect("http://localhost:3000/painter/"+nick)
       });
 
-      app.post("/DeletePainter", async (req, res) => {
+      app.post("/DeletePainter", withAuth, async (req, res) => {
            let nick = "PIXEL"; // MUST BE req.body.nick
             try {
                   let item = await DataPainters.findOne({nick: nick});
@@ -193,11 +197,26 @@ app.post('/upload', upload.any(), async (req, res) => {
             res.redirect("http://localhost:3000/")
       }) 
 
-
+      function withAuth (req, res, next) {
+            const token = req.body.token;  
+            console.log(req)
+            
+            if (!token) {
+              res.status(401).send('Unauthorized: No token provided');
+            } else {
+              jwt.verify(token, secret, function(err, decoded) {
+                if (err) {
+                  res.status(401).send('Unauthorized: Invalid token');
+                } else {
+                  req.email = decoded.email;
+                  next();
+                }
+              });
+            }
+          }
 
 //////////////////////////Cloud servise//////////////////////////////////////////////////
 var AWS = require('aws-sdk');
-const { resolveSoa } = require('dns');
 
 var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
 AWS.config.credentials = credentials;
