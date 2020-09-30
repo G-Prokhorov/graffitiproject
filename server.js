@@ -126,12 +126,15 @@ app.post('/upload', upload.any(), withAuth, async (req, res) => {
 
       try { 
             let item = await DataPainters.findOne({nick: nick});
-            if (!item && data.tag === null) {
+            if (item && !data.tag) {
+                  
                   if (item.tag !== null)  {
+                        console.log("here")
                   data.tag=item.tag
                   }
-            } else if (!item && !data.tag) {
+            } else if (item && data.tag) {
                 if (item.tag !== null)  {
+                  console.log("here2")
                       deleteFile(item.tag.key)
                   }
             }
@@ -170,9 +173,10 @@ app.post('/upload', upload.any(), withAuth, async (req, res) => {
                   console.error("Error while update file, " + err)
             }
             res.redirect("http://localhost:3000/painter/"+nick)
-      });
+      })
 
       app.post("/DeletePainter", withAuth, async (req, res) => {
+            console.log("here")
            let nick = "PIXEL"; // MUST BE req.body.nick
             try {
                   let item = await DataPainters.findOne({nick: nick});
