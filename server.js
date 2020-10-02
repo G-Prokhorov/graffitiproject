@@ -1,18 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
-const mongoose = require('mongoose');
 const multer = require('multer')
 const cors = require("cors")
 const app = express();
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
-
-
 require('dotenv').config()
 
-
+const DataPainters = require("./model/painterdb");
+const User = require("./model/userdb")
 
 const secret = process.env.SECRET;
 const fileSize = 500000000000000000000000000000000000000000; 
@@ -24,33 +22,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(cors());
 app.use(cookieParser());
 
-
-
-mongoose.connect("mongodb://localhost:27018/Painters", {useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true,  useCreateIndex: true})
-
-      const PaintersSchema = new mongoose.Schema ({
-            nick: String,
-            tag: {key: String,
-                  link: String}, 
-            works: [{key: String,
-            link: String}]
-      });
-
-
-
-
-      const saltRounds = 10;
-      const UserSchema = new mongoose.Schema({
-            email:String,
-            password:String
-      });
-    
+const saltRounds = 10;
       
-      
-      const User = mongoose.model("Users", UserSchema)
-
-const DataPainters = mongoose.model("Painters", PaintersSchema);
-
 app.post("/test", withAuth, (req, res) => {
       res.send("lmao");
 })
@@ -94,8 +67,7 @@ app.get("/api/painter/:id", async (req, res) => {
 
 
 let storage = multer.memoryStorage();
-
-var upload = multer({ storage: storage,  limits: { fileSize: fileSize} } );
+let upload = multer({ storage: storage,  limits: { fileSize: fileSize} } );
 
 
 app.post('/upload', upload.any(), withAuth, async (req, res) => {
@@ -129,12 +101,10 @@ app.post('/upload', upload.any(), withAuth, async (req, res) => {
             if (item && !data.tag) {
                   
                   if (item.tag !== null)  {
-                        console.log("here")
                   data.tag=item.tag
                   }
             } else if (item && data.tag) {
                 if (item.tag !== null)  {
-                  console.log("here2")
                       deleteFile(item.tag.key)
                   }
             }
@@ -294,7 +264,6 @@ app.post('/api/register', async (req, res) => {
       });
 
 app.post("/api/login", async (req, res) => {
-      console.log(req.body)
       let body = req.body.data;
       const {email, password} = body;
       try {
