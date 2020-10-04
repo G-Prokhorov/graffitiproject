@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react'
 import { useTransition, animated, config } from 'react-spring'
 
 const slides = [
-  { id: 0, url: 'https://images.unsplash.com/photo-1544572571-ab94fd872ce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1534&q=80&auto=format&fit=crop' },
-  { id: 1, url: 'https://images.unsplash.com/photo-1544572571-ab94fd872ce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1534&q=80&auto=format&fit=crop' },
-  { id: 2, url: 'https://images.unsplash.com/photo-1544572571-ab94fd872ce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1534&q=80&auto=format&fit=crop' },
-  { id: 3, url: 'https://images.unsplash.com/photo-1544572571-ab94fd872ce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1534&q=80&auto=format&fit=crop' },
+  { id: 0, url: 'https://stoneforest.ru/wp-content/uploads/2019/01/Frost-graffiti.jpg' },
+  { id: 1, url: 'https://cdn.britannica.com/13/175913-050-3157AC96/Graffiti-New-York-City-1986.jpg' },
+  { id: 2, url: 'https://ik.imagekit.io/grgdihc3l/Miami/media/Attractions/Museum_of_Graffiti/Wynwood_Museum_of_Graffiti_sonic_1982_1440x900.jpg?ext=.jpg' },
+  { id: 3, url: 'https://cdn.britannica.com/93/171293-050-D99BEDB2/Graffiti-Berlin-Wall.jpg' },
 ]
 
 const Gallery = () => {

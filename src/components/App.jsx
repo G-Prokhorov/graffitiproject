@@ -40,9 +40,6 @@ export default function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
           <Route path="/">
             <Home />
           </Route>

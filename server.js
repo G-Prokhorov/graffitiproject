@@ -19,7 +19,10 @@ app.use(express.static(path.join(__dirname, "build")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
-app.use(cors());
+app.use(cors({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+}));
 app.use(cookieParser());
 
 const saltRounds = 10;
@@ -53,7 +56,6 @@ app.get("/api/db", async (req, res) => {
 });
 
 app.get("/api/painter/:id", async (req, res) => {
-
       try {
             let item = await DataPainters.findOne({nick: req.params.id});
             res.json(item);
@@ -130,9 +132,9 @@ app.post('/upload', upload.any(), withAuth, async (req, res) => {
       
       
 
-      app.post("/deleteWork/:nick", withAuth, async (req, res) => {
+      app.post("/deleteWork", withAuth, async (req, res) => {
             let key = req.body.key;
-            let nick = req.params.nick;
+            let nick = req.body.nick;
 
             try {
                   await  DataPainters.findOneAndUpdate({nick: nick}, {
@@ -142,16 +144,16 @@ app.post('/upload', upload.any(), withAuth, async (req, res) => {
             } catch(err) {
                   console.error("Error while update file, " + err)
             }
-            res.redirect("http://localhost:3000/painter/"+nick)
+            res.redirect("http://localhost:3000/addmenu")
       })
 
       app.post("/DeletePainter", withAuth, async (req, res) => {
-            console.log("here")
-           let nick = "PIXEL"; // MUST BE req.body.nick
+            console.log(req.body.nick)
+           let nick = req.body.nick; // MUST BE req.body.nick
             try {
                   let item = await DataPainters.findOne({nick: nick});
                   console.log(item.tag.key);
-                  if (!item.tag.key) {
+                  if (item.tag.key) {
                         await deleteFile(item.tag.key);
                   }
                   item.works.map( async (item) => {
@@ -172,9 +174,7 @@ app.post('/upload', upload.any(), withAuth, async (req, res) => {
       }) 
 
       function withAuth (req, res, next) {
-            const token = req.body.token;  
-            console.log(req)
-            
+            const token = req.body.token;              
             if (!token) {
               res.status(401).send('Unauthorized: No token provided');
             } else {
@@ -222,7 +222,7 @@ async function uploadFile(fileContent, fileName) {
 
 
 function deleteFile(key) {
-      
+      console.log(key)
       const params = {
             Bucket: "graffitiproject",
             Key: key
@@ -299,10 +299,6 @@ app.post('/api/checkToken', function(req, res) {
         }
     )
 ///////////////////////////////Login & Register///////////////////////////////////////////////
-
-
-
-
 
 app.listen(8080, ()=>{
       console.log("Server started on port 8080")

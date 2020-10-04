@@ -260,6 +260,21 @@ footer {
       padding: auto;
       background-size: cover;
       background-position: center;
+      z-index: 2;
+      
+}
+
+.OldTagImg {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      height: 60%;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      padding: auto;
+      background-size: cover;
+      background-position: center;
       
 }
 
@@ -317,9 +332,9 @@ footer {
 }
 
 .styleBth {
-      margin-top: 15px;
       display: block;
-      width: 20%;
+      margin: 15px auto;
+      width: 23%;
       border: none;
       background: black;
       color: #ffffff !important;
@@ -432,6 +447,7 @@ footer {
 }
 
 .alert {
+      text-align: center;
       width: 45%;
       position: relative;
       margin: 0 auto;

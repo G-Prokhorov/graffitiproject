@@ -1,11 +1,11 @@
 import React from "react";
 
-function Tag(props) {
-      let style = {backgroundImage: 'url('+props.tag+')'}
+function Tag(props) { 
       return (
             <div className="Tag" >
                   <h3>TAG</h3>
-                  <div className="TagImg" style={style}>
+                  <div className="OldTagImg" style={{backgroundImage: 'url('+props.oldTag+')'}}></div>
+                  <div className="TagImg" style={{backgroundImage: 'url('+props.tag+')'}}>
                   </div>
             </div>
       )

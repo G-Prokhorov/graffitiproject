@@ -22,21 +22,6 @@ function AboutPainter(props) {
       }, []);
       
       let scroll = Scroll.animateScroll;
-
-      async function DeletePainter() {
-            if   ( window.confirm(`Are you sure?`)) {
-              try  {
-                  let res = await   Axios.post("http://localhost:8080/DeletePainter", {
-                        nick: nick
-                  });
-                  console.log(res);
-            } catch (err) {
-                  console.error(err)
-            }
-           
-      }
-      }
-
       
     return  (<div>
     {scroll.scrollToTop({duration: 0})}
@@ -49,18 +34,12 @@ function AboutPainter(props) {
             {works.map((currentItem)=>{
                   return <div className="WorkBlock"> 
                   <img className="painterWorks" src={currentItem.link}/>
-                  <form className="DeleteItem" action={"http://localhost:8080/deleteWork/"+nick} method="POST">
-                 <button type="submit" name="key" value={currentItem.key} className="DeleteBth">del</button>
-                 </form>
                   </div>
             })}
              
             </div>
       
-      <div className="container center">
-            <button className="styleBth" onClick={DeletePainter}>Delete all</button>
-      </div>
-
+      
       </div>)
 }
 

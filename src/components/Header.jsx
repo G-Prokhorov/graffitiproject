@@ -64,7 +64,7 @@ function Header(props) {
 
       return (<header className="header" style={style}>
             <h1>Graffiti Kharkiv</h1>
-            <Link to="/home"><p>Home</p></Link>
+            <Link to="/"><p>Home</p></Link>
             <div className="divForBth">
             {Token ? 
                   <button onClick={logout}>Log out</button>
