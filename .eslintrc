@@ -1,0 +1,66 @@
+{
+      "parserOptions": {
+            "ecmaVersion": 2018,
+            "ecmaFeatures": {
+                  "experimentalObjectRestSpread": true
+            }
+      },
+      "env": {
+            "node": true,
+            "browser": false,
+            "es6": true
+      },
+      "plugins": [
+            "import"
+      ],
+      "rules": {
+            "indent": [
+                  "error",
+                  6,
+                  {
+                        "VariableDeclarator": {
+                              "var": 2,
+                              "let": 2,
+                              "const": 3
+                        },
+                        "SwitchCase": 1
+                  }
+            ],
+            "semi": [
+                  2,
+                  "always"
+            ],
+            "no-unused-vars": 2,
+            "one-var": 0,
+            "brace-style": [
+                  "error",
+                  "1tbs",
+                  {
+                        "allowSingleLine": true
+                  }
+            ],
+            "no-underscore-dangle": 0,
+            "prefer-const": 2,
+            "no-undef": 2,
+            "max-len": 0,
+            "func-names": [
+                  "error",
+                  "never"
+            ],
+            "comma-dangle": [
+                  "error",
+                  "never"
+            ],
+            "arrow-body-style": [
+                  "error",
+                  "as-needed",
+                  {
+                        "requireReturnForObjectLiteral": true
+                  }
+            ],
+            "import/prefer-default-export": 0,
+            "import/imports-first": 0,
+            "import/no-extraneous-dependencies": 0,
+            "import/no-unresolved": 0
+      }
+}
