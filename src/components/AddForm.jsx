@@ -115,7 +115,7 @@ function AddForm() {
             });
       }
 
-      function onClickHandler() {
+      async function onClickHandler() {
             let data = new FormData();
             Array.prototype.forEach.call(state.selectedFile, (element) => {
                   data.append("file", element);
@@ -123,11 +123,17 @@ function AddForm() {
             data.append('nick', state.nick);
             data.append('tag', state.tag);
             data.append("token", JSON.parse(localStorage.getItem('user')))
-            Axios.post("http://localhost:8080/upload", data
-            ).then(res => {
+            try {
+                  const res = await Axios.post("http://localhost:8080/upload", data)
                   console.log(res.status);
                   UppdateWorks(state.nick);
-            })
+                  if (res.data) {
+                        AuthSetvice.saveNewToken(res);
+                  }
+            } catch (err) {
+                  console.log(err);
+            }
+
       }
 
       async function DeletePainter() {
@@ -138,6 +144,9 @@ function AddForm() {
                               "token": JSON.parse(localStorage.getItem('user'))
                         };
                         let res = await Axios.post("http://localhost:8080/DeletePainter", dataDelPainter);
+                        if (res.data) {
+                              AuthSetvice.saveNewToken(res);
+                        }
                         console.log(res);
                   } catch (err) {
                         console.error(err)
@@ -154,7 +163,10 @@ function AddForm() {
                         "key": event.target.value,
                         "token": JSON.parse(localStorage.getItem('user'))
                   }
-                  await Axios.post("http://localhost:8080/deleteWork", dataDelWork);
+                  const res = await Axios.post("http://localhost:8080/deleteWork", dataDelWork);
+                  if (res.data) {
+                        AuthSetvice.saveNewToken(res);
+                  }
             } catch (err) {
                   console.error(err)
             }

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 import { useTransition, animated, config } from 'react-spring'
 
@@ -27,4 +26,4 @@ const Gallery = () => {
   ))
 }
 
-export  default Gallery;
+export default Gallery;

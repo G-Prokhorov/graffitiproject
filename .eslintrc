@@ -8,11 +8,9 @@
       "env": {
             "node": true,
             "browser": false,
-            "es6": true
+            "es6": true,
+            "es7": true
       },
-      "plugins": [
-            "import"
-      ],
       "rules": {
             "indent": [
                   "error",
