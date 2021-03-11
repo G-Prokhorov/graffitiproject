@@ -1,0 +1,13 @@
+
+.title .line {
+    height: 8px;
+    border-radius: 2px;
+    transform: matrix(1, 0, 0, -1, 0, 0);
+}
+
+.title  h2 {
+    margin-left: 10px;
+    margin-bottom: 0px;
+    font-size: 35px;
+    color: #ffffff;
+}
