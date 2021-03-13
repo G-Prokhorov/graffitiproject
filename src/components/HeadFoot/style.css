@@ -64,10 +64,16 @@ footer th, p {
 footer th, tr { height: 30px; }
 
 footer a, Link { 
-    color:rgb(141, 141, 141);
+    color:#8d8d8d;
     font-size: 18px;
     outline: none;
     text-decoration: none; 
+}
+
+.icons {
+    height: 12px;
+    margin-right: 4px;
+    width: 12px;
 }
 
 .LogoBreath {
