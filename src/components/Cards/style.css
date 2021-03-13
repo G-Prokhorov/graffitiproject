@@ -1,0 +1,139 @@
+.card {
+    background: #0077E4;
+    border-radius: 15px;
+    box-shadow: 0px 0px 30px rgba(0, 119, 228, 0.5);
+    display: inline-block;
+    height: 200px;
+    padding: 18px auto;
+    position: relative;
+    margin: 10px;    
+    width: 340px;
+}
+
+.card > h3 {
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 35px;
+    letter-spacing: 2px;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.card > p {
+    font-size: 22px;
+    letter-spacing: 2px;
+    margin: 0;
+    margin-top: 3px;
+    text-align: center;
+}
+
+.cardName {
+    background-color: white;
+    bottom: 15px;
+    height: 50%;
+    left: 0;
+    margin: 0 auto;
+    padding: auto;
+    position: absolute;
+    right: 0;
+    width: 100%;
+}
+
+.cardName > p {
+    align-items: center;
+    bottom: 0;
+    color: black !important;
+    display: flex;
+    font-family: 'Indie Flower';
+    font-style: normal;
+    font-size: 50px;
+    font-weight: normal;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    vertical-align: middle;
+    
+}
+
+.bigCard  .card {
+    height: 250px;
+    width: 40%;
+}
+
+.bigCard  .card h3{
+    font-size: 45px;
+    margin-top: 15px;
+    letter-spacing: 7px;
+}
+
+.bigCard   .card > p{
+    font-size: 25px;
+}
+
+.bigCard  .card  .cardName p{
+    font-size: 60px;
+} 
+
+.center {
+    text-align: center;
+}
+
+.Tag {
+    position: relative;
+    width: 40%;
+    height: 250px;
+    margin: 10px;
+    padding: 18px auto;
+    display: inline-block;
+    border-radius: 15px;
+    background-color: black;
+    vertical-align: top;
+    
+}
+
+.Tag h3 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 45px;
+    align-items: center;
+    text-align: center;
+    margin-top: 15px;
+    color: white;
+    letter-spacing: 5px;
+}
+
+
+.TagImg {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    height: 60%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    padding: auto;
+    background-size: cover;
+    background-position: center;
+    z-index: 2;
+    
+}
+
+.OldTagImg {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    height: 60%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    padding: auto;
+    background-size: cover;
+    background-position: center;
+    
+}
