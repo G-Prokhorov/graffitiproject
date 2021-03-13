@@ -1,0 +1,37 @@
+.AboutMe {height: 400px;}
+
+.AboutMe  .right {
+    color: #fff;
+    display: inline;
+    float: left;
+    font-family: 'Indie Flower';
+    font-size: 24px;
+    margin: 10px;
+    text-align: left;
+    vertical-align:  top;
+    width: 60%;
+}
+
+
+
+.AboutMe .right li {
+    list-style-type: circle;
+    margin: 10px 40px;
+}
+
+.right .myCard {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.AboutMeImg {
+    background-image: url(../img/itsme.jpg);
+    background-position: center;
+    background-size: cover;
+    display: inline;
+    filter: drop-shadow(0px 6px 50px rgba(255, 255, 255, 0.2));
+    float: right;
+    height: 400px;
+    margin: 10px;
+    width: 35%;
+}
