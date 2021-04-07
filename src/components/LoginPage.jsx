@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Footer from "./Footer";
+import Footer from "./HeadFoot/Footer";
 import AuthService from "./AuthSetvice";
 
 function LoginPage() {
@@ -80,14 +80,7 @@ function LoginPage() {
 
             </div>
 
-            <Footer style={{
-                  position: "fixed",
-                  left: "0",
-                  bottom: "0",
-                  width: "100%",
-                  margin: "0",
-                  marginTop: "20px"
-            }} />
+            <Footer />
 
       </div>)
 }

@@ -1,6 +1,6 @@
-import React,  { useEffect, useState } from "react";
-import Footer from "./Footer";
-import Header from "./Header";
+import React, { useEffect, useState } from "react";
+import Footer from "./HeadFoot/Footer";
+import Header from "./HeadFoot/Header";
 import AuthService from "./AuthSetvice";
 
 import { isEmail } from "validator";
@@ -19,11 +19,11 @@ function Register() {
                   valid: false,
                   visibility: false
             },
-            FPasswordErr:{
+            FPasswordErr: {
                   valid: false,
                   visibility: false
             },
-            SPasswordErr:{
+            SPasswordErr: {
                   valid: false,
                   visibility: false
             },
@@ -32,8 +32,8 @@ function Register() {
             message: ""
       });
 
-          
-      function email (event) {
+
+      function email(event) {
             if (!isEmail(event.target.value)) {
                   setState((prev) => {
                         return {
@@ -43,7 +43,7 @@ function Register() {
                                     visibility: true
                               }
                         }
-              })
+                  })
             } else {
                   setState((prev) => {
                         return {
@@ -53,45 +53,45 @@ function Register() {
                                     visibility: false
                               }
                         }
-              })
-                  
+                  })
+
             }
       }
 
 
-      function vpassword (event) {
+      function vpassword(event) {
             let value = event.target.value;
-                  if (value.length < 6 || value.length > 40) {
-                        setState((prev) => {
-                              return {
-                                    ...prev,
-                                    FPasswordErr: {
-                                          valid: false,
-                                          visibility: true
-                                    }
+            if (value.length < 6 || value.length > 40) {
+                  setState((prev) => {
+                        return {
+                              ...prev,
+                              FPasswordErr: {
+                                    valid: false,
+                                    visibility: true
                               }
-                    })
-                  } else {
-                        setState((prev) => {
-                              return {
-                                    ...prev,
-                                    FPasswordErr: {
-                                          valid: true,
-                                          visibility: false
-                                    }
+                        }
+                  })
+            } else {
+                  setState((prev) => {
+                        return {
+                              ...prev,
+                              FPasswordErr: {
+                                    valid: true,
+                                    visibility: false
                               }
-                    })
-                        
-                  }
+                        }
+                  })
 
-                  different(data.confirmPassword, value)
-                  
-                };   
+            }
 
-      function differentpassword (event) {
-                  different(event.target.value, data.password)
-                  
-            };            
+            different(data.confirmPassword, value)
+
+      };
+
+      function differentpassword(event) {
+            different(event.target.value, data.password)
+
+      };
 
       function different(value, data) {
             if (value !== data) {
@@ -103,7 +103,7 @@ function Register() {
                                     visibility: true
                               }
                         }
-              })
+                  })
             } else {
                   setState((prev) => {
                         return {
@@ -113,17 +113,17 @@ function Register() {
                                     visibility: false
                               }
                         }
-              })
-                  
+                  })
+
             }
       }
-     
+
       function handlleChangeInput(event) {
-            let {id, value} = event.target;
+            let { id, value } = event.target;
             setData((prev) => {
                   return {
                         ...prev,
-                        [id] : value
+                        [id]: value
                   }
             })
       }
@@ -131,82 +131,93 @@ function Register() {
       async function onSubmit(e) {
 
             e.preventDefault();
-            
-            setState((prev) => {
-                  return {...prev,
-                  message: "",
-                  successful: false
-            }});
 
-            
-                  let NewData = {
-                        email: data.email,
-                        password: data.password
+            setState((prev) => {
+                  return {
+                        ...prev,
+                        message: "",
+                        successful: false
                   }
-                  try {
-                        let res = await AuthService.register(NewData);
-                         if (res === 200) {
-                              setState((prev) => {
-                                    return {...prev,
-                                    disabled:true,
+            });
+
+
+            let NewData = {
+                  email: data.email,
+                  password: data.password
+            }
+            try {
+                  let res = await AuthService.register(NewData);
+                  if (res === 200) {
+                        setState((prev) => {
+                              return {
+                                    ...prev,
+                                    disabled: true,
                                     message: "User succesfully register",
-                                    successful: true }})
-                         } else {
-                        setState((prev) => {
-                              return {...prev,
-                              disabled:true,
-                              message: "User don`t register, try again",
-                              successful: false }})
-                        }
-                  } catch (err) {
-                        setState((prev) => {
-                              return {...prev,
-                              disabled:true,
-                              message: err,
-                              successful: true }
+                                    successful: true
+                              }
                         })
+                  } else {
+                        setState((prev) => {
+                              return {
+                                    ...prev,
+                                    disabled: true,
+                                    message: "User don`t register, try again",
+                                    successful: false
+                              }
+                        })
+                  }
+            } catch (err) {
+                  setState((prev) => {
+                        return {
+                              ...prev,
+                              disabled: true,
+                              message: err,
+                              successful: true
                         }
-                  
+                  })
             }
 
-          
+      }
 
-    
+
+
+
 
       return (<div>
-            <Header animation="false"/>
+            <Header animation="false" />
             <form className="Login" onSubmit={onSubmit}>
                   <label type="email" for="email">Email</label>
-                  <input onChange={(event) => {handlleChangeInput(event); email(event)}} id="email" autocomplete="off" />
+                  <input onChange={(event) => { handlleChangeInput(event); email(event) }} id="email" autocomplete="off" />
                   <ErrValidator visibility={state.emailErr.visibility} err="This is not a valid email." />
-                  <label  for="password">Password</label>
-                  <input onChange={(event) => {handlleChangeInput(event); vpassword(event)}}  type="password" id="password" autocomplete="off" />
+                  <label for="password">Password</label>
+                  <input onChange={(event) => { handlleChangeInput(event); vpassword(event) }} type="password" id="password" autocomplete="off" />
                   <ErrValidator visibility={state.FPasswordErr.visibility} err="The password must be between 6 and 40 characters." />
-                  <label   for="password">Confirm your password</label>
-                  <input onChange={(event) => {handlleChangeInput(event); differentpassword(event)}} id="confirmPassword"  type="password" autocomplete="off" />
-                  <ErrValidator visibility={state.SPasswordErr.visibility} err="Check your password, they are different."/>
+                  <label for="password">Confirm your password</label>
+                  <input onChange={(event) => { handlleChangeInput(event); differentpassword(event) }} id="confirmPassword" type="password" autocomplete="off" />
+                  <ErrValidator visibility={state.SPasswordErr.visibility} err="Check your password, they are different." />
                   <button className={(state.emailErr.valid && state.FPasswordErr.valid && state.SPasswordErr.valid) ? 'styleBth' : 'btnDisabled'} type="submit" disabled={(state.emailErr.valid && state.FPasswordErr.valid && state.SPasswordErr.valid) ? false : true}>Register</button>
                   {state.message && (
-                <div
-                  className={
-                    state.successful
-                      ? "alert alert-success"
-                      : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {state.message}
-                </div>
-            )}
-            
+                        <div
+                              className={
+                                    state.successful
+                                          ? "alert alert-success"
+                                          : "alert alert-danger"
+                              }
+                              role="alert"
+                        >
+                              {state.message}
+                        </div>
+                  )}
+
 
             </form>
-            <Footer style={{position: "fixed",
-            left: "0",
-            bottom: "0",
-            width: "100%",
-            margin: "0",
-            marginTop: "20px"
+            <Footer style={{
+                  position: "fixed",
+                  left: "0",
+                  bottom: "0",
+                  width: "100%",
+                  margin: "0",
+                  marginTop: "20px"
             }} />
       </div>)
 }

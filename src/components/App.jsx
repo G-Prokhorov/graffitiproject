@@ -6,14 +6,16 @@ import {
   useParams
 } from "react-router-dom";
 
-import Header from "./Header";
-import Footer from "./Footer";
-import Aboutme from "./Aboutme";
-import BestArts from "./BestArts";
-import Painters from "./Painters";
-import AboutPainter from "./AboutPainter";
+import "./resetStyle.css"
+import "./globalStyle.css"
 import "./style.css"
+
+import Aboutme from "./AboutMe/Aboutme";
+import AboutPainter from "./AboutPainter";
 import AddForm from "./AddForm";
+import Footer from "./HeadFoot/Footer";
+import Header from "./HeadFoot/Header";
+import Painters from "./Painters";
 import PreLogin from "./PreLogin";
 import RegisterPage from "./Register"
 
@@ -21,7 +23,7 @@ export default function App() {
   return (
     <Router>
       <div>
-       
+
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
@@ -50,16 +52,15 @@ export default function App() {
 }
 
 function Home() {
-      return(
-            <div>
-              <Header animation="true" name="Name"/>
-              <BestArts />   
-              <Aboutme />   
-              <Painters />
-              <Footer />
-            </div>
-       
-            );
+  return (
+    <div>
+      <Header animation="true" name="Name" />
+      <Aboutme />
+      <Painters />
+      <Footer />
+    </div>
+
+  );
 }
 
 function About() {
@@ -67,30 +68,30 @@ function About() {
 }
 
 function Painter() {
-  let {id} = useParams();
+  let { id } = useParams();
   console.log(id)
   return (<div>
-   
-      <Header />
-      <AboutPainter id={id}/>
-      <Footer />
+
+    <Header />
+    <AboutPainter id={id} />
+    <Footer />
   </div>)
 }
 
 function AddMenu() {
   return (<div>
-   <Header animation="false"/>
-   <AddForm />
+    <Header animation="false" />
+    <AddForm />
 
-    </div>)
+  </div>)
 }
 
 function Login() {
-    return (<div>
-    <Header animation="false"/>
-      <PreLogin/>
-      
-    </div>)
+  return (<div>
+    <Header animation="false" />
+    <PreLogin />
+
+  </div>)
 }
 
 function Register() {

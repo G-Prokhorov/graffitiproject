@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Title from "./Title";
-import Card from "./Card";
-import Tag from "./Tag";
+import Title from "./Title/Title";
+import Card from "./Cards/Card";
+import Tag from "./Cards/Tag";
 import Axios from "axios";
 import AuthSetvice from "./AuthSetvice";
 import LoginPage from "./LoginPage";
-import Footer from "./Footer";
+import Footer from "./HeadFoot/Footer";
 import ErrValidator from "./Errvalidator";
 
 
