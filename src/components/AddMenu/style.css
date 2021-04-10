@@ -22,3 +22,21 @@
     height: 40px;
     font-size: 25px;
 }
+
+.DeleteBth {
+    color: white;
+    background-color: black;
+    font-size: 20;
+    border-radius: 3px;
+    border: 3px black;
+    height: 20px;
+    width: 40px;
+}
+
+.DeleteItem {
+    position: absolute;
+    overflow: hidden;
+    display: inline-block;
+    margin: 15px;
+    margin-top: 30px;
+}

@@ -6,7 +6,7 @@ import Axios from "axios";
 import AuthSetvice from "../AuthSetvice";
 import LoginPage from "../LoginPage";
 import Footer from "../HeadFoot/Footer";
-import ErrValidator from "../Errvalidator";
+import ErrValidator from "../../Auth/Errvalidator";
 
 import "./style.css";
 
