@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 
 import "./resetStyle.css"
-import "./style.css"
 
 import Aboutme from "./AboutMe/Aboutme";
 import AboutPainter from "./AboutPainter/AboutPainter";
@@ -15,8 +14,8 @@ import AddForm from "./AddMenu/AddForm";
 import Footer from "./HeadFoot/Footer";
 import Header from "./HeadFoot/Header";
 import Painters from "./Painters";
-import PreLogin from "./PreLogin";
-import RegisterPage from "./Register";
+import PreLogin from "./AuthService/PreLogin";
+import RegisterPage from "./AuthService/Register";
 
 import "./globalStyle.css";
 

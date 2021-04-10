@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Footer from "./HeadFoot/Footer";
-import Header from "./HeadFoot/Header";
+import Footer from "../HeadFoot/Footer";
+import Header from "../HeadFoot/Header";
 import AuthService from "./AuthSetvice";
 
 import { isEmail } from "validator";
 import ErrValidator from "./Errvalidator";
+
+import "./style.css"
 
 
 function Register() {
@@ -211,14 +213,6 @@ function Register() {
 
 
             </form>
-            <Footer style={{
-                  position: "fixed",
-                  left: "0",
-                  bottom: "0",
-                  width: "100%",
-                  margin: "0",
-                  marginTop: "20px"
-            }} />
       </div>)
 }
 

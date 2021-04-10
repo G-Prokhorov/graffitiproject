@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Footer from "./HeadFoot/Footer";
+import Footer from "../HeadFoot/Footer";
 import AuthService from "./AuthSetvice";
+import "./style.css"
 
 function LoginPage() {
 
@@ -79,8 +80,6 @@ function LoginPage() {
                   )}
 
             </div>
-
-            <Footer />
 
       </div>)
 }

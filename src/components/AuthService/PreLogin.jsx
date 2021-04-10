@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Footer from "./HeadFoot/Footer";
+import Footer from "../HeadFoot/Footer";
 import AuthService from "./AuthSetvice";
 import LoginPage from "./LoginPage";
+import "./style.css"
 
 function PreLogin() {
       let [Token, setToken] = useState(false)

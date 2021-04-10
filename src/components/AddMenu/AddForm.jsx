@@ -3,10 +3,10 @@ import Title from "../Title/Title";
 import Card from "../Cards/Card";
 import Tag from "../Cards/Tag";
 import Axios from "axios";
-import AuthSetvice from "../AuthSetvice";
-import LoginPage from "../LoginPage";
+import AuthSetvice from "../AuthService/AuthSetvice";
+import LoginPage from "../AuthService/LoginPage";
 import Footer from "../HeadFoot/Footer";
-import ErrValidator from "../../Auth/Errvalidator";
+import ErrValidator from "../AuthService/Errvalidator";
 
 import "./style.css";
 

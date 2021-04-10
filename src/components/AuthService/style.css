@@ -1,0 +1,58 @@
+.btnDisabled {
+      margin-top: 15px;
+      display: block;
+      width: 20%;
+      border: none;
+      background: #f8d7da;
+      color: #721c24 !important;
+      font-size: 20px;
+      font-weight: 100;
+      padding: 20px;
+      text-transform: uppercase;
+      border-radius: 30px;
+      display: inline-block;   
+}
+
+.Login {
+      text-align: center; 
+      margin: 0 auto;
+      margin-top: 100px;
+      vertical-align: auto;
+      width: 30%;
+      color: #fff;
+}
+
+.Login > button, label, input {
+      display: block;
+      margin: 20px auto;
+}
+
+.Login > input {
+      margin-bottom: 5px;
+      width: 50%;
+      height: 40px;
+      border-radius: 40px;
+      font-size: 25px;
+      padding:0 15px ;
+      outline: none;
+}
+
+.Login > label {
+      font-size: 40px;
+      margin-bottom: -10px;
+}
+
+.Login > button {
+      margin: 40px auto;
+      width: 50%;
+}
+
+.Login > p {
+      letter-spacing: 0;
+      font-size: 20px;
+      margin-top: -20px;
+      margin-bottom: -30px;
+      text-align: center;
+      color: #ff8c00;
+}
+

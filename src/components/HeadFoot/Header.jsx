@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthSetvice from "../AuthSetvice";
+import AuthSetvice from "../AuthService/AuthSetvice";
 
 import "./style.css";
 
