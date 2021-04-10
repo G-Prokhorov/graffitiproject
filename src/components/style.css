@@ -11,12 +11,6 @@
 
 
 
-.painterWorks {
-      width: 80%;
-      margin: 10px 0;
-      box-shadow: 10px 10px 50px 26px rgba(0, 0, 0, 0.25);
-      border-radius: 20px;
-}
 
 .bg {  overflow: hidden;
       position: absolute;
@@ -36,18 +30,18 @@
       padding-bottom: 50px;
 }
 
-.AddForm input {
+.AddForm > input {
       display: block;
       margin: 15px 0;
 }
 
-.AddForm label {
+.AddForm > label {
       display: block;
       font-size: 40px;
       margin: 8px 10px;
 }
 
-.AddForm .InputText {
+.AddForm > .InputText {
       width: 40%;
       height: 40px;
       font-size: 25px;
@@ -75,8 +69,7 @@
       font-weight: 700 !important;
       letter-spacing: 3px;
       background: none;
-      -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-      -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+      box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
       transition: all 0.3s ease 0s;
       cursor: pointer;
 }
@@ -120,9 +113,7 @@
 }
 
 
-.WorkBlock {
-      overflow: inherit;
-}
+
 
 .Login {
       text-align: center;

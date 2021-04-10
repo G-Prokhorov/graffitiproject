@@ -7,17 +7,18 @@ import {
 } from "react-router-dom";
 
 import "./resetStyle.css"
-import "./globalStyle.css"
 import "./style.css"
 
 import Aboutme from "./AboutMe/Aboutme";
-import AboutPainter from "./AboutPainter";
+import AboutPainter from "./AboutPainter/AboutPainter";
 import AddForm from "./AddForm";
 import Footer from "./HeadFoot/Footer";
 import Header from "./HeadFoot/Header";
 import Painters from "./Painters";
 import PreLogin from "./PreLogin";
-import RegisterPage from "./Register"
+import RegisterPage from "./Register";
+
+import "./globalStyle.css";
 
 export default function App() {
   return (

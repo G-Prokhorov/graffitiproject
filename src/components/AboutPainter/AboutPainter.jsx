@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import Card from "./Cards/Card";
-import Tag from "./Cards/Tag"
-import Title from "./Title/Title";
+import Card from "../Cards/Card";
+import Tag from "../Cards/Tag"
+import Title from "../Title/Title";
 import Scroll from "react-scroll";
+
+import "./style.css";
 
 
 
 function AboutPainter(props) {
-      let [nick, setNick] = useState("")
+      let [nick, setNick] = useState("");
       let [tag, setTag] = useState({});
       let [works, setWorks] = useState([]);
       useEffect(() => {
@@ -19,7 +21,7 @@ function AboutPainter(props) {
                         setTag(res.data.tag.link);
                         setWorks(res.data.works);
                   } catch (err) {
-                        console.error("Error wjile get req, " + err)
+                        console.error("Error wjile get req, " + err);
                   }
             }
             fetchData();
@@ -33,7 +35,7 @@ function AboutPainter(props) {
                   <Card name={nick} />
                   <Tag tag={tag} />
             </div>
-            <Title title="Works" />
+            <Title title="Works" color="orange" />
             <div className="container center">
                   {works.map((currentItem, key) => {
                         return <div key={key} className="WorkBlock">

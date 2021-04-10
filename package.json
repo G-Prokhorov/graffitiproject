@@ -40,9 +40,6 @@
     "eject": "react-scripts eject",
     "debug": "nodemon --inspect=9229 server.js"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": {
     "production": [
       ">0.2%",

@@ -61,22 +61,22 @@
     
 }
 
-.bigCard  .card {
+.bigCard .card {
     height: 250px;
     width: 40%;
 }
 
-.bigCard  .card h3{
+.bigCard .card h3{
     font-size: 45px;
     margin-top: 15px;
     letter-spacing: 7px;
 }
 
-.bigCard   .card > p{
+.bigCard .card > p{
     font-size: 25px;
 }
 
-.bigCard  .card  .cardName p{
+.bigCard .card .cardName > p{
     font-size: 60px;
 } 
 
@@ -91,13 +91,14 @@
     margin: 10px;
     padding: 18px auto;
     display: inline-block;
+    background: #0077E4;
     border-radius: 15px;
-    background-color: black;
+    box-shadow: 0px 0px 30px rgba(0, 119, 228, 0.5);
     vertical-align: top;
     
 }
 
-.Tag h3 {
+.Tag > h3 {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -136,5 +137,4 @@
     padding: auto;
     background-size: cover;
     background-position: center;
-    
 }
