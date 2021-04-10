@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import Title from "./Title/Title";
-import Card from "./Cards/Card";
-import Tag from "./Cards/Tag";
+import Title from "../Title/Title";
+import Card from "../Cards/Card";
+import Tag from "../Cards/Tag";
 import Axios from "axios";
-import AuthSetvice from "./AuthSetvice";
-import LoginPage from "./LoginPage";
-import Footer from "./HeadFoot/Footer";
-import ErrValidator from "./Errvalidator";
+import AuthSetvice from "../AuthSetvice";
+import LoginPage from "../LoginPage";
+import Footer from "../HeadFoot/Footer";
+import ErrValidator from "../Errvalidator";
 
-
-
+import "./style.css";
 
 function AddForm() {
       let [Token, setToken] = useState(false)
@@ -220,7 +219,7 @@ function AddForm() {
                               <ErrValidator visibility={existingWorks.show} err="This painter alredy exist, but you can edit his profile if you like" />
                         </div>
                   </div>
-                  <Title title="Preview" />
+                  <Title title="Preview" color="orange" />
                   <div className="preview">
                         <div className="container center bigCard">
                               <Card name={state.nick.toUpperCase()} />

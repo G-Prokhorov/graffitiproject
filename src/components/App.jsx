@@ -11,7 +11,7 @@ import "./style.css"
 
 import Aboutme from "./AboutMe/Aboutme";
 import AboutPainter from "./AboutPainter/AboutPainter";
-import AddForm from "./AddForm";
+import AddForm from "./AddMenu/AddForm";
 import Footer from "./HeadFoot/Footer";
 import Header from "./HeadFoot/Header";
 import Painters from "./Painters";

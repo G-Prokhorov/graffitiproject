@@ -17,3 +17,31 @@ p {
     font-weight: normal;
     letter-spacing: 5px;
 }
+
+.styleBth {
+    display: block;
+    margin: 15px auto;
+    width: 23%;
+    border: none;
+    background: #000;
+    color: #ffffff !important;
+    font-size: 20px;
+    font-weight: 100;
+    padding: 20px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+
+.styleBth:hover {
+    color: #b1b1b1 !important;
+    font-weight: 700 !important;
+    letter-spacing: 3px;
+    background: rgba(0, 119, 230, 0.5);
+    border-radius: 25px;
+    box-shadow: 0px 0px 30px rgba(0, 119, 228, 0.5);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
