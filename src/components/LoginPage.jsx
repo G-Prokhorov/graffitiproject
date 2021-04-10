@@ -62,10 +62,10 @@ function LoginPage() {
       }
       return (<div>
             <div className="Login">
-                  <label for="email">Email</label>
-                  <input onChange={handlleChangeInput} type="text" autocomplete="off" id="email" name='email' />
-                  <label for="password">Password</label>
-                  <input onChange={handlleChangeInput} type="password" autocomplete="off" id="password" name='password' />
+                  <label htmlFor="email">Email</label>
+                  <input onChange={handlleChangeInput} type="text" autoComplete="off" id="email" name='email' />
+                  <label htmlFor="password">Password</label>
+                  <input onChange={handlleChangeInput} type="password" autoComplete="off" id="password" name='password' />
                   <button onClick={onSubmit} className="styleBth" >Log in</button>
                   <p>OR</p>
                   <button onClick={Redirect} className="styleBth">Register</button>

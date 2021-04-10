@@ -13,26 +13,28 @@ function Footer(props) {
             <footer style={props.style}>
                   <div className="container">
                         <table>
-                              <tr>
-                                    <th><p className="LogoBreath">Graffiti project</p></th>
-                                    <th><p>Social network</p></th>
-                              </tr>
-                              <tr>
-                                    <td><Link to="/">Home</Link></td>
-                                    <td><a href="https://www.instagram.com/g_prkhrv/" target="_blank"><img className="icons" src={instagram} alt="" />Instagram</a></td>
-                              </tr>
-                              <tr>
-                                    <td><Link to="/#aboutMe">About me</Link></td>
-                                    <td><a href="https://twitter.com/GPrkhrv?s=09" target="_blank"><img className="icons" src={twitter} alt="" />Twitter</a></td>
-                              </tr>
-                              <tr>
-                                    <td><Link to="/#painers">Painters</Link></td>
-                                    <td><a href="https://www.linkedin.com/in/gregory-prokhorov-595302201/" target="_blank"><img className="icons" src={linkedin} alt="" />Linkedin</a></td>
-                              </tr>
-                              <tr>
-                                    <td><Link to="/login">Login</Link></td>
-                                    <td><a href="https://t.me/grisha_prokhorov" target="_blank"><img className="icons" src={telegram} alt="" />Telegram</a></td>
-                              </tr>
+                              <tbody>
+                                    <tr>
+                                          <th><p className="LogoBreath">Graffiti project</p></th>
+                                          <th><p>Social network</p></th>
+                                    </tr>
+                                    <tr>
+                                          <td><Link to="/">Home</Link></td>
+                                          <td><a href="https://www.instagram.com/g_prkhrv/" target="_blank"><img className="icons" src={instagram} alt="" />Instagram</a></td>
+                                    </tr>
+                                    <tr>
+                                          <td><Link to="/#aboutMe">About me</Link></td>
+                                          <td><a href="https://twitter.com/GPrkhrv?s=09" target="_blank"><img className="icons" src={twitter} alt="" />Twitter</a></td>
+                                    </tr>
+                                    <tr>
+                                          <td><Link to="/#painers">Painters</Link></td>
+                                          <td><a href="https://www.linkedin.com/in/gregory-prokhorov-595302201/" target="_blank"><img className="icons" src={linkedin} alt="" />Linkedin</a></td>
+                                    </tr>
+                                    <tr>
+                                          <td><Link to="/login">Login</Link></td>
+                                          <td><a href="https://t.me/grisha_prokhorov" target="_blank"><img className="icons" src={telegram} alt="" />Telegram</a></td>
+                                    </tr>
+                              </tbody>
                         </table>
 
                   </div>

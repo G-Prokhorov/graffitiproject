@@ -6,9 +6,12 @@ import { Link } from "react-router-dom";
 
 function Painters() {
       let [array, setArray] = useState([]);
-      useEffect(async () => {
-            let result = await Axios.get("http://localhost:8080/api/db");
-            setArray(result.data);
+      useEffect(() => {
+            async function fetchData() {
+                  let result = await Axios.get("http://localhost:8080/api/db");
+                  setArray(result.data);
+            }
+            fetchData();
       }, []);
 
       return (
@@ -16,7 +19,7 @@ function Painters() {
                   <Title title="Painters" color="orange" />
                   <div className="container center">
                         {array.map((item, key) => {
-                              return <Link to={"/painter/" + item.nick} replace>
+                              return <Link key={key} to={"/painter/" + item.nick} replace>
                                     <Card link="on" key={key} name={item.nick} />
                               </Link>
                         })}

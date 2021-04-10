@@ -10,7 +10,7 @@ function Aboutme() {
             <div id={"aboutMe"}>
                   <Title title="About me" />
                   <div className="container AboutMe">
-                        <div class="right">
+                        <div className="right">
                               <p style={{ fontSize: '40px' }}>Gregory Prokhorov</p>
                               <ul>
                                     <li>18 y.o.</li>

@@ -186,13 +186,13 @@ function Register() {
       return (<div>
             <Header animation="false" />
             <form className="Login" onSubmit={onSubmit}>
-                  <label type="email" for="email">Email</label>
+                  <label type="email" htmlFor="email">Email</label>
                   <input onChange={(event) => { handlleChangeInput(event); email(event) }} id="email" autocomplete="off" />
                   <ErrValidator visibility={state.emailErr.visibility} err="This is not a valid email." />
-                  <label for="password">Password</label>
+                  <label htmlFor="password">Password</label>
                   <input onChange={(event) => { handlleChangeInput(event); vpassword(event) }} type="password" id="password" autocomplete="off" />
                   <ErrValidator visibility={state.FPasswordErr.visibility} err="The password must be between 6 and 40 characters." />
-                  <label for="password">Confirm your password</label>
+                  <label htmlFor="password">Confirm your password</label>
                   <input onChange={(event) => { handlleChangeInput(event); differentpassword(event) }} id="confirmPassword" type="password" autocomplete="off" />
                   <ErrValidator visibility={state.SPasswordErr.visibility} err="Check your password, they are different." />
                   <button className={(state.emailErr.valid && state.FPasswordErr.valid && state.SPasswordErr.valid) ? 'styleBth' : 'btnDisabled'} type="submit" disabled={(state.emailErr.valid && state.FPasswordErr.valid && state.SPasswordErr.valid) ? false : true}>Register</button>

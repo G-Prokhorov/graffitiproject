@@ -39,18 +39,19 @@ function AddForm() {
             show: false
       });
 
-      console.log(preview.works)
-
-      useEffect(async () => {
-            try {
-                  let data = await Axios.get("http://localhost:8080/api/db")
-                  console.log(data);
-                  data.data.forEach((element) => {
-                        setArray((prev) => [...prev, element.nick])
-                  });
-            } catch (err) {
-                  console.error("Error while get info about users, " + err)
+      useEffect(() => {
+            async function fetchData() {
+                  try {
+                        let data = await Axios.get("http://localhost:8080/api/db")
+                        data.data.forEach((element) => {
+                              setArray((prev) => [...prev, element.nick])
+                        });
+                  } catch (err) {
+                        console.error("Error while get info about users, " + err)
+                  }
             }
+
+            fetchData();
       }, []);
 
       async function onChangeHandler(event) {
@@ -125,13 +126,12 @@ function AddForm() {
             data.append("token", JSON.parse(localStorage.getItem('user')))
             try {
                   const res = await Axios.post("http://localhost:8080/upload", data)
-                  console.log(res.status);
                   UppdateWorks(state.nick);
                   if (res.data) {
                         AuthSetvice.saveNewToken(res);
                   }
             } catch (err) {
-                  console.log(err);
+                  console.error(err);
             }
 
       }
@@ -147,7 +147,6 @@ function AddForm() {
                         if (res.data) {
                               AuthSetvice.saveNewToken(res);
                         }
-                        console.log(res);
                   } catch (err) {
                         console.error(err)
                   }
@@ -156,7 +155,6 @@ function AddForm() {
       }
 
       async function DeleteWorks(event) {
-            console.log("here")
             try {
                   let dataDelWork = {
                         'nick': state.nick,
@@ -172,10 +170,9 @@ function AddForm() {
             }
             UppdateWorks(state.nick);
       }
-      console.log(preview)
+
 
       async function UppdateWorks(text) {
-            console.log(text);
             setExistingWorks({
                   oldTag: "",
                   array: [],
@@ -184,7 +181,6 @@ function AddForm() {
             if (text) {
                   try {
                         let res = await Axios.get("http://localhost:8080/api/painter/" + text);
-                        console.log(res)
                         let tag = res.data.tag.link;
                         setExistingWorks((prev) => {
                               return {
@@ -193,7 +189,7 @@ function AddForm() {
                                     show: true
                               }
                         })
-                        res.data.works.map((element) => {
+                        res.data.works.forEach((element) => {
                               setExistingWorks((prev) => {
                                     return {
                                           ...prev,
@@ -202,7 +198,7 @@ function AddForm() {
                               })
                         })
                   } catch (err) {
-                        console.log("Error receiving painter's work, " + err)
+                        console.error("Error receiving painter's work, " + err)
                   }
             }
       }
@@ -214,13 +210,12 @@ function AddForm() {
                   <Title title="Add menu" />
                   <div className="container">
                         <div className="AddForm">
-                              <label for="text">Nickname</label>
-                              <input type="text" className="InputText" onChange={onChangeNick} value={state.nick} />
-                              <label for="tag">Tag</label>
-                              <input onChange={onChangeTag} type="file" id="tag" name="tag" calssName="InputFile" accept=".jpg, .jpeg, .png" />
-                              <label for="file">Works</label>
-                              <input onChange={onChangeHandler} type="file" id="file" name="file" calssName="InputFile" accept=".jpg, .jpeg, .png" multiple />
-
+                              <label>Nickname</label>
+                              <input type="text" onChange={onChangeNick} value={state.nick} />
+                              <label>Tag</label>
+                              <input onChange={onChangeTag} type="file" id="tag" name="tag" accept=".jpg, .jpeg, .png" />
+                              <label>Works</label>
+                              <input onChange={onChangeHandler} type="file" id="file" name="file" accept=".jpg, .jpeg, .png" multiple />
                               <button className="styleBth" type="submit" onClick={onClickHandler}>Add</button>
                               <ErrValidator visibility={existingWorks.show} err="This painter alredy exist, but you can edit his profile if you like" />
                         </div>

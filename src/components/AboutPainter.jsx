@@ -11,15 +11,18 @@ function AboutPainter(props) {
       let [nick, setNick] = useState("")
       let [tag, setTag] = useState({});
       let [works, setWorks] = useState([]);
-      useEffect(async () => {
-            try {
-                  let res = await Axios.get("http://localhost:8080/api/painter/" + props.id);
-                  setNick(res.data.nick)
-                  setTag(res.data.tag.link);
-                  setWorks(res.data.works);
-            } catch (err) {
-                  console.error("Error wjile get req, " + err)
+      useEffect(() => {
+            async function fetchData() {
+                  try {
+                        let res = await Axios.get("http://localhost:8080/api/painter/" + props.id);
+                        setNick(res.data.nick)
+                        setTag(res.data.tag.link);
+                        setWorks(res.data.works);
+                  } catch (err) {
+                        console.error("Error wjile get req, " + err)
+                  }
             }
+            fetchData();
       }, []);
 
       let scroll = Scroll.animateScroll;
@@ -32,8 +35,8 @@ function AboutPainter(props) {
             </div>
             <Title title="Works" />
             <div className="container center">
-                  {works.map((currentItem) => {
-                        return <div className="WorkBlock">
+                  {works.map((currentItem, key) => {
+                        return <div key={key} className="WorkBlock">
                               <img className="painterWorks" src={currentItem.link} />
                         </div>
                   })}

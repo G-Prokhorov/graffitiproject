@@ -8,8 +8,7 @@ class AuthService {
       console.log(data)
       let response = await axios.post(API_URL + "login", { data })
       if (response.data.token && response.data.refreshToken) {
-        localStorage.setItem("user", JSON.stringify(response.data.token));
-        localStorage.setItem("refresh", JSON.stringify(response.data.refreshToken));
+        this.saveNewToken(response);
         console.log(response)
         return true
       }
@@ -42,7 +41,7 @@ class AuthService {
       let res = await axios.post(API_URL + "checkToken",
         {
           token: token,
-          refreshToken: refreshToken
+          refreshToken: refreshToken,
         });
 
       this.saveNewToken(res);

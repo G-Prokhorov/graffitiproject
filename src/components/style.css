@@ -38,30 +38,19 @@
 
 .AddForm input {
       display: block;
-      margin: 5px 0;
+      margin: 15px 0;
 }
 
 .AddForm label {
       display: block;
       font-size: 40px;
-      margin: 5px 10px;
+      margin: 8px 10px;
 }
 
 .AddForm .InputText {
       width: 40%;
       height: 40px;
       font-size: 25px;
-}
-
-.InputFile {
-      background-color: black;
-      display: none;
-      width: 0.1px !important;
-	height: 0.1px !important;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -100;
 }
 
 .styleBth {
@@ -144,11 +133,11 @@
       
 }
 
-.Login  button, label, input {
+.Login > button, label, input {
       display: block;
       margin: 15px auto;
 }
-.Login  input {
+.Login > input {
       margin-bottom: 5px;
       width: 50%;
       height: 40px;
@@ -157,22 +146,22 @@
       padding:0 10px ;
 }
 
-.Login input :focus {
+.Login > input :focus {
       border-radius: 40px;
       border-color: royalblue;
 }
 
-.Login  label {
+.Login > label {
       font-size: 40px;
       margin-bottom: -10px;
 }
 
-.Login  button {
+.Login > button {
       margin: 40px auto;
       width: 50%;
 }
 
-.Login      p {
+.Login > p {
       letter-spacing: 0;
       color: black;
       font-size: 20px;
