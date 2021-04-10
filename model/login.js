@@ -15,7 +15,7 @@ async function login(req, res) {
                   res.sendStatus(401).send("Incorect passwor or email");
             } else if (result === true) {
                   const token = jwt.sign({ email: email }, secret, {
-                        expiresIn: '1h'
+                        expiresIn: '15m'
                   });
                   const refreshToken = jwt.sign({ email: email }, refreshSecret, {
                         expiresIn: '7d'

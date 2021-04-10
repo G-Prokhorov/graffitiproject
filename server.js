@@ -28,10 +28,6 @@ app.use(cors({
 
 
 
-app.post("/test", withAuth, (req, res) => {
-      res.send("lmao");
-});
-
 app.get("/ping", (req, res) => res.send("pong"));
 
 app.get("/", (req, res) => {
