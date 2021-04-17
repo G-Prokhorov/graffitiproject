@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link';
 
 import instagram from "../img/icon/instagram.svg"
 import twitter from "../img/icon/twitter.svg"
