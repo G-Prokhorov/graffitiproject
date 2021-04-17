@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthSetvice from "../AuthService/AuthSetvice";
 
 import "./style.css";
 
@@ -18,10 +17,10 @@ function Header(props) {
       }, []);
 
 
-      function logout() {
-            AuthSetvice.logout();
-            window.location.replace("/home");
-      }
+      // function logout() {
+      //       AuthSetvice.logout();
+      //       window.location.replace("/home");
+      // }
 
 
       return (<header className="header">
@@ -29,13 +28,13 @@ function Header(props) {
             <Link to="/"><p>Home</p></Link>
             <div className="header-right">
                   {Token ?
-                        <button onClick={logout}>Log out</button>
+                        <Link to="/addmenu"><button style={{ width: "100px" }}>Menu</button></Link>
                         : <Link to="/login">
                               <button>Log in</button>
                         </Link>
                   }
             </div>
-      </header>);
+      </header >);
 }
 
 

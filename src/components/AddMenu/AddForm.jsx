@@ -226,8 +226,8 @@ function AddForm() {
                               <Tag oldTag={existingWorks.oldTag} tag={preview.tag} />
                         </div>
                         <div className="container center">
-                              {existingWorks.array.map((element) => {
-                                    return <div className="WorkBlock">
+                              {existingWorks.array.map((element, key) => {
+                                    return <div key={key} className="WorkBlock">
                                           <img className="painterWorks" src={element.link} />
                                           <div className="DeleteItem">
                                                 <button onClick={DeleteWorks} value={element.key} type="submit" name="key" className="DeleteBth">del</button>
@@ -235,8 +235,8 @@ function AddForm() {
                                     </div>
                               })}
 
-                              {preview.works.map((element) => {
-                                    return <div className="WorkBlock">
+                              {preview.works.map((element, key) => {
+                                    return <div key={key} className="WorkBlock">
                                           <img className="painterWorks" src={element} />
                                     </div>
                               })}

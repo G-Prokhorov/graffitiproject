@@ -10,8 +10,9 @@ header {
 }
 
 
-
 header h1 {
+    font-family: 'Tag';
+    letter-spacing: 10px;
     color: white;
     display: inline-block;
     font-size: 50px;
@@ -27,6 +28,8 @@ header  p {
 }
 
 .header-right {
+    position: relative;
+    vertical-align: bottom;
     float: right;
     margin-right: 20px;
 }
@@ -36,10 +39,11 @@ header  p {
     border-radius: 4px;
     color: black;
     font-size: 20px;
-    font-family: Roboto;
+    font-family: 'Courier Prime', monospace;
     height: 50px;
     margin-top: -2px;
     width: 90px;
+    outline: none;
 }
 
 footer {
@@ -78,35 +82,11 @@ footer a, Link {
 
 .LogoBreath {
     font-size: 24px;
-
     animation: color_change 5s infinite alternate;
-    -webkit-animation: color_change 5s infinite alternate;
-	-moz-animation: color_change 5s infinite alternate;
-	-ms-animation: color_change 5s infinite alternate;
-	-o-animation: color_change 5s infinite alternate;
-}
-
-@-webkit-keyframes color_change {
-	from {color:#fff;}
-	to {color: #D57400;}
-}
-
-@-moz-keyframes color_change {
-	from {color:#fff;}
-	to {color: #D57400;}
-}
-
-@-ms-keyframes color_change {
-	from {color:#fff;}
-	to {color: #D57400;}
-}
-
-@-o-keyframes color_change {
-	from {color:#fff;}
-	to {color: #D57400;}
 }
 
 @keyframes color_change {
 	from {color:#fff;}
 	to {color: #D57400;}
 }
+

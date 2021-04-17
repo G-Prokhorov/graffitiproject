@@ -17,11 +17,17 @@ function AboutPainter(props) {
             async function fetchData() {
                   try {
                         let res = await Axios.get("http://localhost:8080/api/painter/" + props.id);
-                        setNick(res.data.nick)
-                        setTag(res.data.tag.link);
-                        setWorks(res.data.works);
+                        if (res) {
+                              setNick(res.data.nick);
+
+                              if (res.data.tag != "") {
+                                    setTag(res.data.tag.link);
+                              }
+                              setWorks(res.data.works);
+                        }
+
                   } catch (err) {
-                        console.error("Error wjile get req, " + err);
+                        console.error("Error while get req, " + err);
                   }
             }
             fetchData();

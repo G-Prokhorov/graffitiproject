@@ -22,6 +22,9 @@
 }
 
 .card > p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
     color: #fff;
     font-size: 22px;
     letter-spacing: 2px;
@@ -47,17 +50,15 @@
     bottom: 0;
     color: black !important;
     display: flex;
-    font-family: 'Indie Flower';
-    font-style: normal;
-    font-size: 50px;
-    font-weight: normal;
+    font-family: 'Tag';
+    letter-spacing: 8px;
+    font-size: 70px;
     justify-content: center;
+    align-items: flex-end;
     left: 0;
     position: absolute;
     right: 0;
-    text-align: center;
     top: 0;
-    vertical-align: middle;
     
 }
 
