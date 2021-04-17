@@ -11,6 +11,19 @@
     margin: 15px 0;
 }
 
+.AddForm > input[type="text"] {
+    padding: 3px;
+    height: 30px;
+    width: 250px;
+    font-size: 24px;
+}
+
+.AddForm > input[type="file"] {
+    height: 25px;
+    font-size: 16px;
+}
+
+
 .AddForm > label {
     display: block;
     font-size: 40px;
